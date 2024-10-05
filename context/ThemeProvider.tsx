@@ -1,20 +1,32 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+
+// Define the interface for the context type
 interface ThemeContextType {
 	mode: string;
 	setMode: (mode: string) => void;
 }
+
+// Create the ThemeContext with default undefined value
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+// ThemeProvider component
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-	const [mode, setMode] = useState("");
+	const [mode, setMode] = useState<string>("light"); // Set default theme as light
+
+	// Function to handle manual theme switching
 	const handleThemeChange = () => {
-		if (mode === "dark") {
-			setMode("light");
-			document.documentElement.classList.add("light");
-		} else {
+		if (
+			localStorage.theme === "dark" ||
+			(!("theme" in localStorage) &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches)
+		) {
 			setMode("dark");
 			document.documentElement.classList.add("dark");
+		} else {
+			setMode("light");
+			document.documentElement.classList.remove("dark");
 		}
 	};
 	useEffect(() => {
@@ -27,6 +39,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	);
 }
 
+// Hook to use the ThemeContext
 export function useTheme() {
 	const context = useContext(ThemeContext);
 	if (context === undefined) {

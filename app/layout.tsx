@@ -14,7 +14,7 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700"],
-	variable: "--font-space-grotesk",
+	variable: "--font-spaceGrotesk",
 });
 export const metadata: Metadata = {
 	title: "Dev Overflow",
