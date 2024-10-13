@@ -51,7 +51,7 @@ const Theme = () => {
 					)}
 				</MenubarTrigger>
 				<MenubarContent
-					className="absolute right-[-3rem] mt-3 min-w-[120px] rounded py-2
+					className="background-light900_dark200 absolute right-[-3rem] mt-3 min-w-[120px] rounded py-2
 						dark:border-dark-400 dark:bg-dark-300
 					"
 				>
@@ -73,16 +73,14 @@ const Theme = () => {
 								width={16}
 								height={16}
 								alt={theme.label}
-								className={`${
-									mode === theme.value && "active-theme"
-								}`}
+								className={`${mode === theme.value && "active-theme"
+									}`}
 							/>
 							<p
-								className={`body-semibold text-light-500 ${
-									mode === theme.value
+								className={`body-semibold text-light-500 ${mode === theme.value
 										? "text-primary-500"
 										: "text-dark100_light900"
-								}`}
+									}`}
 							>
 								{theme.label}
 							</p>
